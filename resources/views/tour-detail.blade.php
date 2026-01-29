@@ -165,70 +165,27 @@
 
                     <!-- ITINERARY TAB -->
                     <div class="tab-content active" id="itinerary">
-                        <h3>Day 1: Royal Heritage Discovery</h3>
+                        <h3> Kashmir Valleys: Nature’s Paradise</h3>
 
                         <div class="timeline">
 
                             <div class="timeline-item">
-                                <span class="time">9:00 AM</span>
+                                <span class="time">Day 1</span>
                                 <div>
                                     <h4>Hotel Pickup</h4>
                                     <p>Comfortable pickup from your hotel in Jaipur city center</p>
                                 </div>
                             </div>
 
-                            <div class="timeline-item">
-                                <span class="time">9:30 AM</span>
-                                <div>
-                                    <h4>Hawa Mahal Visit</h4>
-                                    <p>
-                                        Explore the iconic Palace of Winds with its 953 intricately carved jharokhas.
-                                    </p>
-                                </div>
-                            </div>
+
+
+
+
+
+
 
                             <div class="timeline-item">
-                                <span class="time">11:00 AM</span>
-                                <div>
-                                    <h4>City Palace Complex</h4>
-                                    <p>
-                                        Visit Chandra Mahal, Mubarak Mahal and see royal artifacts and textiles.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item">
-                                <span class="time">12:30 PM</span>
-                                <div>
-                                    <h4>Traditional Lunch</h4>
-                                    <p>
-                                        Enjoy authentic Rajasthani cuisine at a heritage restaurant.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item">
-                                <span class="time">2:00 PM</span>
-                                <div>
-                                    <h4>Jantar Mantar Observatory</h4>
-                                    <p>
-                                        UNESCO World Heritage site showcasing ancient Indian astronomy.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item">
-                                <span class="time">2:30 PM</span>
-                                <div>
-                                    <h4>Johari Bazaar Shopping</h4>
-                                    <p>
-                                        Browse traditional Kundan jewelry, textiles, and handicrafts.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="timeline-item">
-                                <span class="time">9:00 PM</span>
+                                <span class="time">Day 2</span>
                                 <div>
                                     <h4>Return to Hotel</h4>
                                     <p>

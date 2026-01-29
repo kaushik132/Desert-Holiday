@@ -14,5 +14,6 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
 
     $router->resource('destination-categories', DestinationCategoryController::class);
+    $router->resource('destinations', DestinationController::class);
 
 });

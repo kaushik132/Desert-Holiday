@@ -65,7 +65,7 @@
 
                 </a>
                 @endforeach
-         
+
 
             </div>
 
@@ -96,7 +96,7 @@
 
                 <div class="item">
                     <article>
-                        <a href="tour-detail.php">
+                        <a href="{{'destination-detail'}}">
                             <div class="featured-card">
                                 <div class="featured-img">
                                     <img src="assets/images/destina.webp" alt="">
