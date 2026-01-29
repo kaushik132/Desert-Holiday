@@ -7,6 +7,7 @@ use OpenAdmin\Admin\Form;
 use OpenAdmin\Admin\Grid;
 use OpenAdmin\Admin\Show;
 use \App\Models\Destination;
+use \App\Models\DestinationCategory;
 use Illuminate\Support\Str;
 
 class DestinationController extends AdminController
@@ -28,7 +29,7 @@ class DestinationController extends AdminController
         $grid = new Grid(new Destination());
 
         $grid->column('id', __('Id'));
-        $grid->column('thumb_image', __('Thumb image'))->image('/uploads/','50','50');
+        $grid->column('thumb_image', __('Thumb image'))->image('/uploads/', '50', '50');
 
         $grid->column('title', __('Title'));
 
@@ -80,29 +81,46 @@ class DestinationController extends AdminController
     protected function form()
     {
         $form = new Form(new Destination());
+        $form->tab('Info', function ($form) {
+            $form->select('category_id', __('Category Name'))->options(DestinationCategory::pluck('name', 'id'))->required();
 
-        $form->select('category_id', __('Category Name'));
-        $form->text('thumb_image', __('Thumb image'));
-        $form->text('gallery', __('Gallery'));
-        $form->text('alt', __('Alt'));
-        $form->text('title', __('Title'));
-        $form->saving(function (Form $form) {
-            $form->slug = Str::slug($form->title);
+            $form->text('title', __('Title'));
+            $form->saving(function (Form $form) {
+                $form->slug = Str::slug($form->title);
+            });
+            $form->hidden('slug', __('Slug'));
+            $form->textarea('short_description', __('Short description'));
+            $form->text('tour_duration', __('Tour duration'));
+            $form->text('tour_group', __('Tour group'));
+            $form->text('tour_location', __('Tour location'));
+            $form->text('best_time', __('Best time'));
+            $form->text('pickup_location', __('Pickup location'));
+            $form->text('tour_reviews', __('Tour reviews'));
+            $form->ckeditor('description', __('Description'));
         });
-        $form->hidden('slug', __('Slug'));
-        $form->textarea('short_description', __('Short description'));
-        $form->text('tour_duration', __('Tour duration'));
-        $form->text('tour_group', __('Tour group'));
-        $form->text('tour_location', __('Tour location'));
-        $form->text('best_time', __('Best time'));
-        $form->text('pickup_location', __('Pickup location'));
-        $form->text('tour_reviews', __('Tour reviews'));
-        $form->textarea('description', __('Description'));
-        $form->text('itinerarys', __('Itinerarys'));
-        $form->text('inclusions', __('Inclusions'));
-        $form->text('exclusions', __('Exclusions'));
-        $form->switch('is_active', __('Is active'))->default(1);
 
+
+        $form->tab('Images', function ($form) {
+            $form->image('thumb_image', __('Thumb image'));
+            $form->text('alt', __('Alt'));
+            $form->multipleImage('gallery', __('Gallery'));
+        });
+
+        $form->tab('PackageItinerary', function ($form) {
+            $form->hasMany('packagedetailsinsert', 'PackageItinerary', function (Form\NestedForm $form) {
+                $form->text('order_num', __('Order Num'));
+                $form->text('name', __('Name'));
+                $form->textarea('description', __('Description'));
+            });
+        });
+
+        $form->tab('Inclusion Exclusion', function ($form) {
+            $form->textarea('inclusions', __('Inclusions'));
+            $form->textarea('exclusions', __('Exclusions'));
+        });
+        $form->tab('Status', function ($form) {
+            $form->switch('is_active', __('Is active'))->default(1);
+        });
         return $form;
     }
 }
