@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>India Desert Holiday</title>
 
-    <link rel="icon" type="image/png" href="{{url('/assets/images/favicon.png')}}">
-    <link rel="stylesheet" href="{{url('assets/css/owl.theme.default.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{url('assets/css/owl.carousel.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{url('assets/css/all.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{url('assets/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/css/all.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}" type="text/css">
     <!-- <link rel="stylesheet" href="assets/css/aos.css" type="text/css"> -->
-    <link rel="stylesheet" href="{{url('assets/webfonts')}}" type="text/css">
-    <link rel="stylesheet" href="{{url('assets/css/style.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{url('assets/css/responsive.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/webfonts')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -38,7 +38,7 @@
                 <div class="headermn">
                     <nav class="navbar navbar-expand-lg p-0 align-items-center">
                         <a class="navbar-brand" href="{{url('/')}}">
-                            <img src="{{url('/assets/images/logo.png')}}" alt="Desert Holiday Logo">
+                            <img src="{{asset('assets/images/logo.png')}}" alt="Desert Holiday Logo">
                         </a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
@@ -50,10 +50,10 @@
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                             <div class="offcanvas-header">
                                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                                    <img src="{{url('/assets/images/logo.png')}}" alt="Desert Holiday Logo">
+                                    <img src="{{asset('assets/images/logo.png')}}" alt="Desert Holiday Logo">
                                 </h5>
                                 <button class="offcanvas-close-btn" type="button" data-bs-dismiss="offcanvas" aria-label="Close">
-                                    <img src="{{url('/assets/images/close.png')}}" alt="Dismiss">
+                                    <img src="{{asset('assets/images/close.png')}}" alt="Dismiss">
                                 </button>
                             </div>
 

@@ -22,4 +22,11 @@ class Destination extends Model
     {
         return $this->hasMany(DestinationDetailsInsert::class, 'package_id','id');
     }
+
+    public function duration()
+    {
+        return $this->hasMany(Duration::class, 'duration_id','id');
+    }
+
+
 }

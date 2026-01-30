@@ -8,6 +8,7 @@ use OpenAdmin\Admin\Grid;
 use OpenAdmin\Admin\Show;
 use \App\Models\Destination;
 use \App\Models\DestinationCategory;
+use App\Models\Duration;
 use Illuminate\Support\Str;
 
 class DestinationController extends AdminController
@@ -29,7 +30,7 @@ class DestinationController extends AdminController
         $grid = new Grid(new Destination());
 
         $grid->column('id', __('Id'));
-        $grid->column('thumb_image', __('Thumb image'))->image('/uploads/', '50', '50');
+        $grid->column('thumb_image', __('Thumb image'))->image('/uploads/', '70', '70');
 
         $grid->column('title', __('Title'));
 
@@ -83,6 +84,7 @@ class DestinationController extends AdminController
         $form = new Form(new Destination());
         $form->tab('Info', function ($form) {
             $form->select('category_id', __('Category Name'))->options(DestinationCategory::pluck('name', 'id'))->required();
+            $form->select('duration_id', __('Duration Name'))->options(Duration::pluck('name', 'id'))->required();
 
             $form->text('title', __('Title'));
             $form->saving(function (Form $form) {

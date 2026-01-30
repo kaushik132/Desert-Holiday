@@ -16,5 +16,6 @@ Route::group([
     $router->resource('destination-categories', DestinationCategoryController::class);
     $router->resource('destinations', DestinationController::class);
     $router->resource('destination-details-inserts', DestinationDetailsInsertController::class);
+    $router->resource('durations', DurationController::class);
 
 });

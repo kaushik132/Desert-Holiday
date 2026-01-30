@@ -168,15 +168,15 @@
 
 
 <!-- Bootstrap JS Bundle -->
-<script src="{{url('assets/js/jquery-3.6.1.min.js')}}" type="text/javascript"></script>
-<script src="{{url('assets/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/jquery-3.6.1.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script src="{{url('assets/js/owl.carousel.min.js')}}" type="text/javascript"></script>
-<script src="{{url('assets/js/isotope-pkd-min.js')}}"></script>
+<script src="{{asset('assets/js/owl.carousel.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('assets/js/isotope-pkd-min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<!-- <script src="{{url('assets/js/aos.js')}}" type="text/javascript"></script> -->
-<script src="{{url('assets/js/custom.js')}}" type="text/javascript" defer></script>
+<!-- <script src="{{asset('assets/js/aos.js')}}" type="text/javascript"></script> -->
+<script src="{{asset('assets/js/custom.js')}}" type="text/javascript" defer></script>
 
 
 
