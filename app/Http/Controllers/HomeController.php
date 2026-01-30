@@ -54,6 +54,11 @@ class HomeController extends Controller
 
     public function destinationDetail($slug = null)
     {
+
+        $alldestinations = Destination::with('category')
+            ->inRandomOrder()
+            ->get();
+
         $destinationsData = Destination::with('category')->where('slug', $slug)->first();
         $seo_data['seo_title'] = $destinationsData->seo_title;
         $seo_data['seo_description'] = $destinationsData->seo_description;
@@ -66,7 +71,7 @@ class HomeController extends Controller
             ->get();
 
 
-        return view('tour-detail', compact('destinationsData', 'destinationsdetails', 'seo_data', 'canocial'));
+        return view('tour-detail', compact('destinationsData', 'destinationsdetails', 'seo_data', 'canocial', 'alldestinations'));
     }
 
     public function blog()

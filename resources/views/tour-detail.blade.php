@@ -199,11 +199,11 @@
                                 <!-- EXCLUSIONS -->
                                 <div class="exc-box">
                                     <h4><i class="fa-solid fa-circle-xmark"></i> Exclusions</h4>
-                                       @php
+                                    @php
                                         $exclusions = preg_split("/\r\n|\n|\r/", $destinationsData->exclusions);
                                     @endphp
                                     <ul>
-                                       @foreach ($exclusions as $item)
+                                        @foreach ($exclusions as $item)
                                             @if (trim($item) !== '')
                                                 <li>{{ trim($item) }}</li>
                                             @endif
@@ -223,7 +223,7 @@
                                     <i class="fa-regular fa-clock"></i>
                                     <div>
                                         <span>Tour Duration</span>
-                                        <strong>{{$destinationsData->tour_duration}}</strong>
+                                        <strong>{{ $destinationsData->tour_duration }}</strong>
                                     </div>
                                 </div>
 
@@ -231,7 +231,7 @@
                                     <i class="fa-regular fa-calendar"></i>
                                     <div>
                                         <span>Best Time</span>
-                                        <strong>{{$destinationsData->best_time}}</strong>
+                                        <strong>{{ $destinationsData->best_time }}</strong>
                                     </div>
                                 </div>
 
@@ -239,7 +239,7 @@
                                     <i class="fa-solid fa-location-dot"></i>
                                     <div>
                                         <span>Pickup Location</span>
-                                        <strong>{{$destinationsData->pickup_location}}</strong>
+                                        <strong>{{ $destinationsData->pickup_location }}</strong>
                                     </div>
                                 </div>
 
@@ -247,7 +247,7 @@
                                     <i class="fa-solid fa-users"></i>
                                     <div>
                                         <span>Suitable For</span>
-                                        <strong>{{$destinationsData->tour_group}}</strong>
+                                        <strong>{{ $destinationsData->tour_group }}</strong>
                                     </div>
                                 </div>
 
@@ -270,46 +270,52 @@
                         <h2 class="section-title text-start">Related Tour</h2>
                         <p class="section-subtitle mb-4 text-start">Navigate the Globe with Confidence</p>
                     </li>
-                    <li><a href="#!">View All</a></li>
+                    <li><a href="{{url('destination')}}">View All</a></li>
                 </ul>
 
                 <div class="owl-carousel featured-carousel">
 
-                    <div class="item">
-                        <article>
-                            <a href="tour-detail.php">
-                                <div class="featured-card">
-                                    <div class="featured-img">
-                                        <img src="assets/images/destina.webp" alt="">
-                                        <div class="top-btn-icon">
-                                            <div class="top-btn"><small>Top Rated</small></div>
-                                            <div class="top-icon">
-                                                <img src="assets/images/heart.png" alt="">
+
+                    @foreach ($alldestinations as $destination)
+                        <div class="item">
+                            <article>
+                                <a href="{{ url('destination-detail/' . $destination->slug) }}">
+                                    <div class="featured-card">
+                                        <div class="featured-img">
+                                            <img src="{{ url('uploads/' . $destination->thumb_image) }}"
+                                                alt="{{ $destination->alt }}">
+                                            <div class="top-btn-icon">
+                                                <div class="top-btn"><small>Top Rated</small></div>
+                                                <div class="top-icon">
+                                                    <img src="{{ asset('assets/images/heart.png') }}" alt="Hart Icon">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="featured-content">
-                                        <h3>Kashmir Valleys: Nature’s Paradise</h3>
+                                        <div class="featured-content">
+                                            <h3>{{ $destination->title }}</h3>
 
-                                        <span><i class="fa-solid fa-clock"></i> 2 days 3 nights</span>
-                                        &nbsp;&nbsp;
-                                        <span><i class="fa-solid fa-clock"></i> 2 days 3 nights</span>
+                                            <span><i class="fa-solid fa-clock"></i> {{ $destination->tour_duration }}
+                                                days</span>
+                                            &nbsp;&nbsp;
+                                            <span><i class="fa-solid fa-location-dot"></i>
+                                                {{ $destination->tour_location }}</span>
 
-                                        <ul>
-                                            <li>
+                                            <ul>
+                                                {{-- <li>
                                                 <span class="main-price">₹4888</span>
                                                 <span>/ person</span>
-                                            </li>
-                                            <li class="theme-btn cus-btn">Book Now</li>
-                                        </ul>
+                                            </li> --}}
+                                                <li class="theme-btn cus-btn">Enquiry Now</li>
+                                            </ul>
 
-                                        <span class="badge">★ 4.6 (98 reviews)</span>
+                                            <span class="badge">★ {{ $destination->tour_reviews }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
+                                </a>
+                            </article>
+                        </div>
+                    @endforeach
 
 
 
@@ -321,7 +327,7 @@
 
         <!-- also like  section  -->
 
-        <section class="featured">
+        {{-- <section class="featured">
             <div class="container">
 
                 <ul class="heading-store">
@@ -375,7 +381,7 @@
                 </div>
 
             </div>
-        </section>
+        </section> --}}
 
 
     </main>
@@ -388,13 +394,49 @@
                 <span class="close-share">&times;</span>
             </div>
 
+            @php
+                $shareUrl = urlencode(url()->current());
+                $shareTitle = urlencode($destinationsData->title);
+            @endphp
+
             <div class="share-icons">
-                <a href="#" class="share facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="share whatsapp-1"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="share linkedin"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="share telegram"><i class="fab fa-telegram-plane"></i></a>
-                <a href="#" class="share copy"><i class="fa fa-link"></i></a>
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $shareUrl }}" target="_blank"
+                    class="share facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/?text={{ $shareTitle }}%20{{ $shareUrl }}" target="_blank"
+                    class="share whatsapp-1">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ $shareUrl }}" target="_blank"
+                    class="share linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <!-- Telegram -->
+                <a href="https://t.me/share/url?url={{ $shareUrl }}&text={{ $shareTitle }}" target="_blank"
+                    class="share telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+
+                <!-- Copy link -->
+                <a href="javascript:void(0)" class="share copy" onclick="copyShareLink('{{ url()->current() }}')">
+                    <i class="fa fa-link"></i>
+                </a>
             </div>
+
         </div>
     </div>
+    <script>
+        function copyShareLink(link) {
+            navigator.clipboard.writeText(link).then(function() {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
 @endsection
