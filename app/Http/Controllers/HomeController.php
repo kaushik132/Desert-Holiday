@@ -46,10 +46,11 @@ class HomeController extends Controller
             //     $seo_data['seo_image'] = $homepage->seo_image_blog;
             $canocial = 'https://www.tajindiatrails.com/blogs';
         }
+        $alldestinations = DestinationCategory::inRandomOrder()->get();
         $destinationCategories = DestinationCategory::latest()->get();
         $duration = Duration::latest()->get();
 
-        return view('tour', compact('destinationCategories', 'duration', 'destinationList', 'canocial'));
+        return view('tour', compact('destinationCategories', 'duration', 'destinationList', 'canocial', 'alldestinations'));
     }
 
     public function destinationDetail($slug = null)

@@ -25,47 +25,19 @@
                 <!-- Owl Carousel Wrapper -->
                 <div class="owl-carousel category-carousel">
 
+@foreach ($alldestinations as $alldestination)
 
-                    <a href="#!">
+
+                    <a href="{{ 'destination/' . $alldestination->slug }}" class="item">
                         <div class="category-item text-center">
-                            <img src="assets/images/banner-2 (2).jpg" class="rounded-circle" alt="Leh-Ladakh">
-                            <h6 class="category-title mt-3">Leh-Ladakh</h6>
-                            <p class="category-subtitle">Mountain Adventures</p>
+                            <img src="{{ url('uploads/' . $alldestination->image) }}" class="rounded-circle" alt="Leh-Ladakh">
+                            <h6 class="category-title mt-3">{{$alldestination->name}}</h6>
+                            <p class="category-subtitle">{{$alldestination->short_description}}</p>
                         </div>
 
                     </a>
-                    <a href="#!">
-                        <div class="category-item text-center">
-                            <img src="assets/images/banner-2 (2).jpg" class="rounded-circle" alt="Leh-Ladakh">
-                            <h6 class="category-title mt-3">Leh-Ladakh</h6>
-                            <p class="category-subtitle">Mountain Adventures</p>
-                        </div>
+                    @endforeach
 
-                    </a>
-                    <a href="#!">
-                        <div class="category-item text-center">
-                            <img src="assets/images/banner-2 (2).jpg" class="rounded-circle" alt="Leh-Ladakh">
-                            <h6 class="category-title mt-3">Leh-Ladakh</h6>
-                            <p class="category-subtitle">Mountain Adventures</p>
-                        </div>
-
-                    </a>
-                    <a href="#!">
-                        <div class="category-item text-center">
-                            <img src="assets/images/banner-2 (2).jpg" class="rounded-circle" alt="Leh-Ladakh">
-                            <h6 class="category-title mt-3">Leh-Ladakh</h6>
-                            <p class="category-subtitle">Mountain Adventures</p>
-                        </div>
-
-                    </a>
-                    <a href="#!">
-                        <div class="category-item text-center">
-                            <img src="assets/images/banner-2 (2).jpg" class="rounded-circle" alt="Leh-Ladakh">
-                            <h6 class="category-title mt-3">Leh-Ladakh</h6>
-                            <p class="category-subtitle">Mountain Adventures</p>
-                        </div>
-
-                    </a>
 
                 </div>
 
@@ -92,11 +64,12 @@
                             <span class="selected-text">All</span>
                             <span class="arrow">▾</span>
                             <ul class="select-options">
-                                <li onclick="selectOption(this)">All</li>
-                                @foreach ($destinationCategories as $destinationCategoriess)
-                                    <li onclick="selectOption(this)">{{ $destinationCategoriess->name }}</li>
+                                <li data-id="" class="option">All</li>
+                                @foreach ($destinationCategories as $cat)
+                                    <li data-id="{{ $cat->id }}" class="option">
+                                        {{ $cat->name }}
+                                    </li>
                                 @endforeach
-
                             </ul>
                         </div>
                     </div>
@@ -107,9 +80,11 @@
                             <span class="selected-text">All</span>
                             <span class="arrow">▾</span>
                             <ul class="select-options">
-                                <li onclick="selectOption(this)">All</li>
-                                @foreach ($duration as $durations)
-                                    <li onclick="selectOption(this)">{{ $durations->name }}</li>
+                                <li data-id="" class="option">All</li>
+                                @foreach ($duration as $dur)
+                                    <li data-id="{{ $dur->id }}" class="option">
+                                        {{ $dur->name }}
+                                    </li>
                                 @endforeach
 
                             </ul>
@@ -132,12 +107,11 @@
 
                 <!-- TAGS + COUNT -->
                 <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
-                    <span class="filter-tag">Adventure <span>×</span></span>
-                    <span class="filter-tag">1-5 Days <span>×</span></span>
+
 
 
                     <div class="ms-auto fw-medium">
-                        Showing 6 tour packages
+
                     </div>
                 </div>
 
@@ -149,43 +123,45 @@
 
 
                     @foreach ($destinationList as $destination)
-
-
-                    <div class="col-lg-3 col-md-6">
-                        <article>
-                            <a href="{{ 'destination-detail/'. $destination->slug }}">
-                                <div class="featured-card">
-                                    <div class="featured-img">
-                                        <img src="{{ url('uploads/'. $destination->thumb_image) }}" alt="{{ $destination->alt }}">
-                                        <div class="top-btn-icon">
-                                            <div class="top-btn"><small>Top Rated</small></div>
-                                            <div class="top-icon">
-                                                <img src="{{asset('assets/images/heart.png')}}" alt="Hart Icon">
+                        <div class="col-lg-3 col-md-6 tour-card" data-category="{{ $destination->category_id }}"
+                            data-duration="{{ $destination->duration_id }}">
+                            <article>
+                                <a href="{{ 'destination-detail/' . $destination->slug }}">
+                                    <div class="featured-card">
+                                        <div class="featured-img">
+                                            <img src="{{ url('uploads/' . $destination->thumb_image) }}"
+                                                alt="{{ $destination->alt }}">
+                                            <div class="top-btn-icon">
+                                                <div class="top-btn"><small>Top Rated</small></div>
+                                                <div class="top-icon">
+                                                    <img src="{{ asset('assets/images/heart.png') }}" alt="Hart Icon">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="featured-content">
-                                        <h3>{{ $destination->title }}</h3>
+                                        <div class="featured-content">
+                                            <h3>{{ $destination->title }}</h3>
 
-                                        <span><i class="fa-solid fa-clock"></i> {{ $destination->tour_duration }} days</span>
-                                        &nbsp;&nbsp;
-                                        <span><i class="fa-solid fa-location-dot"></i> {{$destination->tour_location}}</span>
+                                            <span><i class="fa-solid fa-clock"></i> {{ $destination->tour_duration }}
+                                                days</span>
+                                            &nbsp;&nbsp;
+                                            <span><i class="fa-solid fa-location-dot"></i>
+                                                {{ $destination->tour_location }}</span>
 
-                                        <ul>
-                                            {{-- <li>
+                                            <ul>
+                                                {{-- <li>
                                                 <span class="main-price">₹4888</span>
                                                 <span>/ person</span>
                                             </li> --}}
-                                            <li class="theme-btn cus-btn">Enquiry Now</li>
-                                        </ul>
+                                                <li class="theme-btn cus-btn">Enquiry Now</li>
+                                            </ul>
 
-                                        <span class="badge">★ {{$destination->tour_reviews}}</span>
+                                            <span class="badge">★ {{ $destination->tour_reviews }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
+                                </a>
+                            </article>
+                        </div>
                     @endforeach
 
 
@@ -219,4 +195,114 @@
             </div>
         </div>
     </div>
+
+   <script>
+let selectedCategory = '';
+let selectedDuration = '';
+
+/* Open/close dropdown */
+document.querySelectorAll('.custom-select').forEach(select => {
+    select.addEventListener('click', function () {
+        this.classList.toggle('open');
+    });
+});
+
+/* Option click */
+document.querySelectorAll('.option').forEach(option => {
+    option.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        const select = this.closest('.custom-select');
+        const text = this.innerText;
+        const id = this.dataset.id;
+
+        select.querySelector('.selected-text').innerText = text;
+
+        if (select.previousElementSibling?.innerText === 'Category') {
+            selectedCategory = id;
+        } else {
+            selectedDuration = id;
+        }
+
+        filterTours();
+        renderTags();
+    });
+});
+
+/* Filter logic */
+function filterTours() {
+    let count = 0;
+
+    document.querySelectorAll('.tour-card').forEach(card => {
+        const cat = card.dataset.category;
+        const dur = card.dataset.duration;
+
+        let show = true;
+        if (selectedCategory && cat !== selectedCategory) show = false;
+        if (selectedDuration && dur !== selectedDuration) show = false;
+
+        card.style.display = show ? 'block' : 'none';
+        if (show) count++;
+    });
+
+    document.querySelector('.fw-medium').innerText =
+        `Showing ${count} tour packages`;
+}
+
+/* Render filter tags dynamically */
+function renderTags() {
+    const tagBox = document.querySelector('.filter-tags');
+    tagBox.innerHTML = '';
+
+    if (selectedCategory) {
+        const catText = document.querySelector('.custom-select[data-type="category"] .selected-text').innerText;
+        const tag = document.createElement('span');
+        tag.className = 'filter-tag';
+        tag.innerHTML = `${catText} <span class="remove-tag" data-type="category">×</span>`;
+        tagBox.appendChild(tag);
+    }
+
+    if (selectedDuration) {
+        const durText = document.querySelector('.custom-select[data-type="duration"] .selected-text').innerText;
+        const tag = document.createElement('span');
+        tag.className = 'filter-tag';
+        tag.innerHTML = `${durText} <span class="remove-tag" data-type="duration">×</span>`;
+        tagBox.appendChild(tag);
+    }
+
+    // Add click event for removing a tag
+    document.querySelectorAll('.remove-tag').forEach(el => {
+        el.addEventListener('click', function () {
+            const type = this.dataset.type;
+            if (type === 'category') selectedCategory = '';
+            if (type === 'duration') selectedDuration = '';
+
+            // Reset dropdown text
+            if (type === 'category') {
+                document.querySelector('.custom-select[data-type="category"] .selected-text').innerText = 'All';
+            }
+            if (type === 'duration') {
+                document.querySelector('.custom-select[data-type="duration"] .selected-text').innerText = 'All';
+            }
+
+            filterTours();
+            renderTags();
+        });
+    });
+}
+
+/* Clear all button */
+document.querySelector('.btn-clear').addEventListener('click', () => {
+    selectedCategory = '';
+    selectedDuration = '';
+
+    document.querySelectorAll('.selected-text').forEach(el => el.innerText = 'All');
+    document.querySelectorAll('.tour-card').forEach(c => c.style.display = 'block');
+
+    document.querySelector('.fw-medium').innerText =
+        `Showing ${document.querySelectorAll('.tour-card').length} tour packages`;
+
+    document.querySelector('.filter-tags').innerHTML = '';
+});
+</script>
 @endsection
