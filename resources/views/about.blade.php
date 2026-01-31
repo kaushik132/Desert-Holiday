@@ -11,7 +11,7 @@
       <div class="breadcrumb-content text-center">
         <h1>About Us </h1>
         <ul class="breadcrumb-list">
-          <li><a href="index.php">Home</a></li>
+          <li><a href="{{url('/')}}">Home</a></li>
           <li>/</li>
           <li>About Us</li>
         </ul>
@@ -72,7 +72,7 @@
 
           <ul class="feature-list">
             <li>
-              <span class="check"><img src="assets/images/correct.png" alt=""></span>
+              <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="Correct Icon"></span>
               <div>
                 <h6>Expert Travel Planning</h6>
                 <p>Carefully designed itineraries created by experienced travel professionals.</p>
@@ -80,7 +80,7 @@
             </li>
 
             <li>
-              <span class="check"><img src="assets/images/correct.png" alt=""></span>
+              <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="Correct Icon"></span>
               <div>
                 <h6>Transparent Pricing</h6>
                 <p>No hidden charges – what you see is what you pay.</p>
@@ -88,7 +88,7 @@
             </li>
 
             <li>
-              <span class="check"><img src="assets/images/correct.png" alt=""></span>
+              <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="Correct Icon"></span>
               <div>
                 <h6>24/7 Customer Support</h6>
                 <p>Our support team is available anytime during your journey.</p>
@@ -96,7 +96,7 @@
             </li>
 
             <li>
-              <span class="check"><img src="assets/images/correct.png" alt=""></span>
+              <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="Correct Icon"></span>
               <div>
                 <h6>Verified Stays & Services</h6>
                 <p>Handpicked hotels and trusted partners for a comfortable stay.</p>
@@ -104,7 +104,7 @@
             </li>
 
             <li>
-              <span class="check"><img src="assets/images/correct.png" alt=""></span>
+              <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="Correct Icon"></span>
               <div>
                 <h6>Trusted by Travelers</h6>
                 <p>Thousands of happy travelers and positive reviews you can rely on.</p>
@@ -118,19 +118,19 @@
           <div class="image-wrap">
 
             <div class="circle-img large cir-same">
-              <img src="assets/images/destina.webp" alt="">
+              <img src="{{asset('assets/images/destina.webp')}}" alt="Destina Logo">
             </div>
 
             <div class="circle-img medium top cir-same">
-              <img src="assets/images/destina.webp" alt="">
+              <img src="{{asset('assets/images/destina.webp')}}" alt="Destina Logo">
             </div>
 
             <div class="circle-img small">
-              <img src="assets/images/destina.webp" alt="">
+              <img src="{{asset('assets/images/destina.webp')}}" alt="Destina Logo">
             </div>
 
             <div class="circle-img mini-small">
-              <img src="assets/images/destina.webp" alt="">
+              <img src="{{asset('assets/images/destina.webp')}}" alt="Destina Logo">
             </div>
 
             <!-- dotted design -->
