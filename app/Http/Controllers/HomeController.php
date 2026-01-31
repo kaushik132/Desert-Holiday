@@ -94,11 +94,27 @@ class HomeController extends Controller
             //     $seo_data['seo_image'] = $homepage->seo_image_blog;
             $canocial = 'https://www.tajindiatrails.com/blog';
         }
-        return view('blog',compact('blogList', 'canocial'));
+        $newblog = Blog::where('is_active', 1)
+            ->with('category')
+            ->latest()
+            ->firstOrFail();
+
+        $blogrendom = Blog::inRandomOrder()->limit(2)->get();
+
+
+
+        return view('blog', compact('blogList', 'newblog', 'blogrendom', 'canocial'));
     }
 
-    public function blogDetail()
+    public function blogDetail($slug = null)
     {
-        return view('blog-detail');
+
+        $blogDetail = Blog::with('category')->where('slug', $slug)->first();
+        // $seo_data['seo_title'] = $blogDetail->seo_title;
+        // $seo_data['seo_description'] = $blogDetail->seo_description;
+        // $seo_data['keywords'] = $blogDetail->seo_keyword;
+        // $seo_data['seo_image'] = $blogDetail->image;
+        // $canocial = 'http://127.0.0.1:8000/blog/' . $blogDetail->slug;
+        return view('blog-detail', compact('blogDetail'));
     }
 }

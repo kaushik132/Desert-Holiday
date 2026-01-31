@@ -14,7 +14,7 @@
           </a>
 
           <h1 class="blog-title">
-            A Complete Travel Guide for First-Time Travelers
+       {{ $blogDetail->title }}
           </h1>
 
           <div class="blog-meta mb-3">
@@ -162,7 +162,7 @@
               <a href="#" class="subscribe-social-item">
                 <i class="fa-brands fa-youtube"></i> Youtube
               </a>
-            
+
             </div>
           </div>
 
