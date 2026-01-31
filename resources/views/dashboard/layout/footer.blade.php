@@ -7,7 +7,7 @@
 
                 <!-- Column 1 -->
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <img src="assets/images/logo.png" alt="Logo" class="mb-3 f-logo">
+                    <img src="{{asset('assets/images/logo.png')}}" alt="Logo" class="mb-3 f-logo">
                     <p>
                         ShipX delivers reliable and tech-driven logistics solutions that simplify global shipping
                         for modern businesses.

@@ -11,7 +11,7 @@
       <div class="breadcrumb-content text-center">
         <h1>Blogs </h1>
         <ul class="breadcrumb-list">
-          <li><a href="index.php">Home</a></li>
+          <li><a href="{{url('/')}}">Home</a></li>
           <li>/</li>
           <li>Blogs</li>
         </ul>
@@ -42,9 +42,9 @@
                 <span class="blog-tag custom-b-span">NEWS</span>
                 <h4>Essential Travel Tips For A Smooth And Stress-Free Journey</h4>
                 <div class="blog-meta">
-                  <span><i class="fa-regular fa-user"></i> By Admin</span>
+  
                   <span><i class="fa-regular fa-calendar"></i> 27 August, 2024</span>
-                  <span><i class="fa-regular fa-clock"></i> 20 Mins</span>
+
                 </div>
               </div>
             </div>

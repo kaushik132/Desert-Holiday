@@ -18,4 +18,7 @@ Route::group([
     $router->resource('destination-details-inserts', DestinationDetailsInsertController::class);
     $router->resource('durations', DurationController::class);
 
+    $router->resource('blog-categories', BlogCategoryController::class);
+    $router->resource('blogs', BlogController::class);
+
 });

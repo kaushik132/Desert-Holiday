@@ -9,7 +9,7 @@
         <!-- LEFT CONTENT -->
         <div class="col-lg-8">
 
-          <a href="blog.php" class="back-btn">
+          <a href="{{url('blog')}}" class="back-btn">
             <i class="fa-solid fa-arrow-left"></i> Back To Home
           </a>
 
@@ -18,9 +18,9 @@
           </h1>
 
           <div class="blog-meta mb-3">
-            <span><i class="fa-regular fa-user"></i> By Admin</span>
+
             <span><i class="fa-regular fa-calendar"></i> 27 August, 2024</span>
-            <span><i class="fa-regular fa-clock"></i> 20 Mins</span>
+
           </div>
 
           <div class="blog-featured-img">
@@ -162,12 +162,7 @@
               <a href="#" class="subscribe-social-item">
                 <i class="fa-brands fa-youtube"></i> Youtube
               </a>
-              <a href="#" class="subscribe-social-item">
-                <i class="fa-brands fa-linkedin-in"></i> Linkedin
-              </a>
-              <a href="#" class="subscribe-social-item">
-                <i class="fa-brands fa-pinterest-p"></i> Pinterest
-              </a>
+            
             </div>
           </div>
 
