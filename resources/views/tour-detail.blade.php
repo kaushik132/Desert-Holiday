@@ -4,15 +4,15 @@
         .two-column-list ul {
             column-count: 2;
             column-gap: 30px;
-            padding-left: 18px;
+            padding-left : 18px;
         }
 
         .two-column-list li {
             break-inside: avoid;
-            margin-bottom: 8px;
+            margin-bottom : 8px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width : 768px) {
             .two-column-list ul {
                 column-count: 1;
             }
