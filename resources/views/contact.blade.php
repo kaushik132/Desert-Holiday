@@ -11,7 +11,7 @@
       <div class="breadcrumb-content text-center">
         <h1>Contact Us </h1>
         <ul class="breadcrumb-list">
-          <li><a href="index.php">Home</a></li>
+          <li><a href="{{ url('/') }}">Home</a></li>
           <li>/</li>
           <li>Contact Us</li>
         </ul>

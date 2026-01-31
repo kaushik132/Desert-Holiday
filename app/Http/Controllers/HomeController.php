@@ -14,9 +14,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $destinationCategories = DestinationCategory::latest()->limit(2)->get();
+        $destinationCategories = Destination::latest()->limit(20)->get();
+        $destination = Destination::latest()->get();
         $destinationCategoriess = DestinationCategory::latest()->get();
-        return view('index', compact('destinationCategories', 'destinationCategoriess'));
+        $category = DestinationCategory::latest()->get();
+        $allblog = Blog::latest()->with('category')->limit(10)->get();
+        return view('index', compact('destinationCategories', 'destination', 'destinationCategoriess', 'category', 'allblog'));
     }
 
     public function about()
@@ -109,12 +112,13 @@ class HomeController extends Controller
     public function blogDetail($slug = null)
     {
 
+        $blogrendom = Blog::inRandomOrder()->with('category')->limit(5)->get();
         $blogDetail = Blog::with('category')->where('slug', $slug)->first();
         // $seo_data['seo_title'] = $blogDetail->seo_title;
         // $seo_data['seo_description'] = $blogDetail->seo_description;
         // $seo_data['keywords'] = $blogDetail->seo_keyword;
         // $seo_data['seo_image'] = $blogDetail->image;
         // $canocial = 'http://127.0.0.1:8000/blog/' . $blogDetail->slug;
-        return view('blog-detail', compact('blogDetail'));
+        return view('blog-detail', compact('blogDetail', 'blogrendom'));
     }
 }

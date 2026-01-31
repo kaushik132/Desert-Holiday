@@ -89,7 +89,7 @@ class BlogController extends AdminController
         $form->hidden('slug', __('Slug'));
         $form->image('image', __('Image'));
         $form->text('alt', __('Alt'));
-        $form->textarea('description', __('Description'));
+        $form->ckeditor('description', __('Description'));
         $form->url('facebook_link', __('Facebook link'))->default('https://www.facebook.com/');
         $form->url('twitter_link', __('Twitter link'))->default('https://x.com/');
         $form->url('instagram_link', __('Instagram link'))->default('https://www.instagram.com/');
