@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class DestinationCategory extends Model
 {
     protected $table = 'destination_category';
+    protected $guarded = ['slug'];
+
     protected $fillable = [
         'image',
         'name',
@@ -17,6 +19,13 @@ class DestinationCategory extends Model
         'seo_key',
         'is_active',
     ];
+
+   public function setSlugAttribute($value)
+    {
+        if (! empty($value)) {
+            $this->attributes['slug'] = $value;
+        }
+    }
 
     public function destinations()
     {

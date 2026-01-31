@@ -7,11 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Destination extends Model
 {
     protected $table = 'destination';
+    protected $guarded = ['slug'];
+
     protected $casts = [
     'inclusions' => 'array',
     'exclusions' => 'array',
     'gallery' => 'array',
 ];
+
+public function setSlugAttribute($value)
+{
+    if (! empty($value)) {
+        $this->attributes['slug'] = $value;
+    }
+}
+
 
     public function category()
     {

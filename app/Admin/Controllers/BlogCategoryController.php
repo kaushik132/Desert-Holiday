@@ -32,7 +32,13 @@ class BlogCategoryController extends AdminController
 
         $grid->column('image', __('Image'))->image('/uploads/', '70', '70');
 
-        $grid->column('is_active', __('Is active'))->switch();
+
+$grid->column('slug', __('Slug'))->copyable();
+$grid->column('is_active', __('Status'))->switch([
+    'on'  => ['value' => 1, 'text' => 'Active'],
+    'off' => ['value' => 0, 'text' => 'Inactive'],
+]);
+
 
 
         return $grid;

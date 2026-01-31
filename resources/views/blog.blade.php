@@ -42,7 +42,7 @@
                 <span class="blog-tag custom-b-span">NEWS</span>
                 <h4>Essential Travel Tips For A Smooth And Stress-Free Journey</h4>
                 <div class="blog-meta">
-  
+
                   <span><i class="fa-regular fa-calendar"></i> 27 August, 2024</span>
 
                 </div>
@@ -110,11 +110,13 @@
     <div class="container mt-3">
         <h3 class="section-title text-start mt-2">Trending Blog</h3>
       <div class="owl-carousel blog-slider">
+@foreach ($blogList as $blog)
+
 
         <div class="item">
           <a href="{{'blog-detail'}}">
             <div class="blog-card blog-small d-flex">
-              <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="">
+              <img src="{{url('uploads/'.$blog->image)}}" alt="{{$blog->alt}}">
               <div class="blog-content">
                 <span class="blog-tag">TECHNOLOGY</span>
                 <h5>Iphone Devices Are Going To Incredible Now A Days</h5>
@@ -132,6 +134,8 @@
             </div>
           </a>
         </div>
+
+        @endforeach
 
 
 

@@ -34,8 +34,10 @@ class BlogController extends AdminController
 
         $grid->column('image', __('Image'))->image('/uploads/', 100, 100);
 
-        $grid->column('is_active', __('Is active'))->switch();
-
+      $grid->column('is_active', __('Status'))->switch([
+    'on'  => ['value' => 1, 'text' => 'Active'],
+    'off' => ['value' => 0, 'text' => 'Inactive'],
+]);
         return $grid;
     }
 

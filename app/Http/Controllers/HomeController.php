@@ -6,7 +6,8 @@ use App\Models\Destination;
 use Illuminate\Http\Request;
 use App\Models\DestinationCategory;
 use App\Models\DestinationDetailsInsert;
-
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Duration;
 
 class HomeController extends Controller
@@ -37,14 +38,14 @@ class HomeController extends Controller
             //     $seo_data['seo_description'] =$destinationList->seo_description;
             //    $seo_data['keywords'] =$destinationList->seo_keyword;
             //       $seo_data['seo_image'] = $destinationList->image;
-            $canocial = 'https://www.tajindiatrails.com/blog/' . $slug;
+            $canocial = 'https://www.tajindiatrails.com/destination/' . $slug;
         } else {
             $destinationList = Destination::latest()->with('category')->paginate(4);
             // $seo_data['seo_title'] =$homepage->seo_title_blog;
             // $seo_data['seo_description'] =$homepage->seo_des_blog;
             // $seo_data['keywords'] =$homepage->seo_key_blog;
             //     $seo_data['seo_image'] = $homepage->seo_image_blog;
-            $canocial = 'https://www.tajindiatrails.com/blogs';
+            $canocial = 'https://www.tajindiatrails.com/destination';
         }
         $alldestinations = DestinationCategory::inRandomOrder()->get();
         $destinationCategories = DestinationCategory::latest()->get();
@@ -75,9 +76,25 @@ class HomeController extends Controller
         return view('tour-detail', compact('destinationsData', 'destinationsdetails', 'seo_data', 'canocial', 'alldestinations'));
     }
 
-    public function blog()
+    public function blog($slug = null)
     {
-        return view('blog');
+        if ($slug != null) {
+            $blogcategory = BlogCategory::where('slug', $slug)->first();
+            $blogList = Blog::with('category')->where('category_id, $blogcategory->id')->paginate(4);
+            // $seo_data['seo_title'] = $blog->seo_title;
+            // $seo_data['seo_description'] = $blog->seo_description;
+            // $seo_data['keywords'] = $blog->seo_keyword;
+            // $seo_data['seo_image'] = $blog->image;
+            $canocial = 'https://www.tajindiatrails.com/blog/' . $slug;
+        } else {
+            $blogList = Blog::with('category')->paginate(4);
+            // $seo_data['seo_title'] =$homepage->seo_title_blog;
+            // $seo_data['seo_description'] =$homepage->seo_des_blog;
+            // $seo_data['keywords'] =$homepage->seo_key_blog;
+            //     $seo_data['seo_image'] = $homepage->seo_image_blog;
+            $canocial = 'https://www.tajindiatrails.com/blog';
+        }
+        return view('blog',compact('blogList', 'canocial'));
     }
 
     public function blogDetail()
