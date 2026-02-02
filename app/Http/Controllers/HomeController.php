@@ -9,6 +9,8 @@ use App\Models\DestinationDetailsInsert;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Duration;
+use App\Models\GalleryCategory;
+use App\Models\Gallery;
 
 class HomeController extends Controller
 {
@@ -19,7 +21,10 @@ class HomeController extends Controller
         $destinationCategoriess = DestinationCategory::latest()->get();
         $category = DestinationCategory::latest()->get();
         $allblog = Blog::latest()->with('category')->limit(10)->get();
-        return view('index', compact('destinationCategories', 'destination', 'destinationCategoriess', 'category', 'allblog'));
+        $galleryCagerory = GalleryCategory::latest()->limit(8)->get();
+        $gallary = Gallery::latest()->with('category')->limit(8)->get();
+
+        return view('index', compact('destinationCategories', 'destination', 'destinationCategoriess', 'category', 'allblog', 'galleryCagerory', 'gallary'));
     }
 
     public function about()
@@ -29,7 +34,8 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('contact');
+        $destinationCategories = Destination::latest()->get();
+        return view('contact', compact('destinationCategories'));
     }
 
     public function destination($slug = null)

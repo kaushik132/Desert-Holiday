@@ -58,9 +58,9 @@
                   <label>Group Size</label>
                   <select class="form-select">
                     <option>Select Group Size</option>
-                    <option>1-2</option>
-                    <option>3-5</option>
-                    <option>6+</option>
+                    <option value="1-2">1-2</option>
+                    <option value="3-5">3-5</option>
+                    <option value="6+">6+</option>
                   </select>
                 </div>
 
@@ -68,9 +68,10 @@
                   <label>Interested Destination</label>
                   <select class="form-select">
                     <option>Select Destination</option>
-                    <option>India</option>
-                    <option>Rajasthan</option>
-                    <option>Kerala</option>
+                    @foreach ($destinationCategories as $dc)
+     <option value="{{$dc->title}}">{{ $dc->title }}</option>
+                    @endforeach
+
                   </select>
                 </div>
 

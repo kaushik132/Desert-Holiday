@@ -69,7 +69,7 @@
 
                                                 </div>
                                                 <p>
-                                                    {{ Str::limit($rendom->description, 100) }}
+                                                    {!! Str::limit($rendom->description, 100) !!}
                                                 </p>
                                                 <a href="{{ 'blog-detail/' . $rendom->slug }}" class="read-more">
                                                     Read More <i class="fa-solid fa-arrow-right"></i>
@@ -128,7 +128,7 @@
 
                                         </div>
                                         <p>
-                                            {{ Str::limit($blog->description, 100) }}
+                                            {!! Str::limit($blog->description, 100) !!}
                                         </p>
                                         <a href="{{ 'blog-detail/' . $blog->slug }}" class="read-more">
                                             Read More <i class="fa-solid fa-arrow-right"></i>

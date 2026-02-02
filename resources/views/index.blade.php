@@ -159,7 +159,8 @@
 
                         <ul class="feature-list">
                             <li>
-                                <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="correct logo"></span>
+                                <span class="check"><img src="{{ asset('assets/images/correct.png') }}"
+                                        alt="correct logo"></span>
                                 <div>
                                     <h6>Expert Travel Planning</h6>
                                     <p>Carefully designed itineraries created by experienced travel professionals.</p>
@@ -167,7 +168,8 @@
                             </li>
 
                             <li>
-                                <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="correct logo"></span>
+                                <span class="check"><img src="{{ asset('assets/images/correct.png') }}"
+                                        alt="correct logo"></span>
                                 <div>
                                     <h6>Transparent Pricing</h6>
                                     <p>No hidden charges – what you see is what you pay.</p>
@@ -175,7 +177,8 @@
                             </li>
 
                             <li>
-                                <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="correct logo"></span>
+                                <span class="check"><img src="{{ asset('assets/images/correct.png') }}"
+                                        alt="correct logo"></span>
                                 <div>
                                     <h6>24/7 Customer Support</h6>
                                     <p>Our support team is available anytime during your journey.</p>
@@ -183,7 +186,8 @@
                             </li>
 
                             <li>
-                                <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="correct logo"></span>
+                                <span class="check"><img src="{{ asset('assets/images/correct.png') }}"
+                                        alt="correct logo"></span>
                                 <div>
                                     <h6>Verified Stays & Services</h6>
                                     <p>Handpicked hotels and trusted partners for a comfortable stay.</p>
@@ -191,7 +195,8 @@
                             </li>
 
                             <li>
-                                <span class="check"><img src="{{asset('assets/images/correct.png')}}" alt="correct logo"></span>
+                                <span class="check"><img src="{{ asset('assets/images/correct.png') }}"
+                                        alt="correct logo"></span>
                                 <div>
                                     <h6>Trusted by Travelers</h6>
                                     <p>Thousands of happy travelers and positive reviews you can rely on.</p>
@@ -345,10 +350,9 @@
                     <!-- FILTER TABS -->
                     <ul class="gallery-tabs d-flex gap-2">
                         <li class="active" data-filter="all">All</li>
-                        <li data-filter="heritage">Heritage</li>
-                        <li data-filter="mountain">Mountain</li>
-                        <li data-filter="beach">Beach</li>
-                        <li data-filter="spiritual">Spiritual</li>
+                        @foreach ($galleryCagerory as $galleryCagerory)
+                            <li data-filter="{{ $galleryCagerory->name }}">{{ $galleryCagerory->name }}</li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -356,69 +360,17 @@
                     <!-- LEFT BIG SLIDER -->
                     <div class="col-lg-5 position-relative">
                         <div class="big-slider owl-carousel">
-                            <div class="big-slide" data-category="heritage">
-                                <img src="assets/images/banner-1.jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
+                            @foreach ($gallary as $gallars)
+                                <div class="big-slide" data-category="{{ $gallars->category->name }}">
+                                    <img src="{{ url('uploads/' . $gallars->image) }}" alt="{{ $gallars->alt }}">
+                                    <div class="slide-text">
+                                        <h2>{{ $gallars->name }}</h2>
+                                        <span>{{ $gallars->category->name }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="big-slide" data-category="mountain">
-                                <img src="assets/images/banner-2 (2).jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
-                            <div class="big-slide" data-category="beach">
-                                <img src="assets/images/banner-3 (2).jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
-                            <div class="big-slide" data-category="spiritual">
-                                <img src="assets/images/desti.jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
-                            <div class="big-slide" data-category="heritage">
-                                <img src="assets/images/banner-1.jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
-                            <div class="big-slide" data-category="mountain">
-                                <img src="assets/images/banner-2 (2).jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
-                            <div class="big-slide" data-category="beach">
-                                <img src="assets/images/banner-3 (2).jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
-                            <div class="big-slide" data-category="spiritual">
-                                <img src="assets/images/desti.jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
-                            <div class="big-slide" data-category="spiritual">
-                                <img src="assets/images/desti.jpg">
-                                <div class="slide-text">
-                                    <h2>Kashmir Valleys: Nature’s Paradise</h2>
-                                    <span>Jammu-Kashmir</span>
-                                </div>
-                            </div>
+                            @endforeach
+
+
 
                         </div>
                         <div class="border-frame">
@@ -430,33 +382,13 @@
                     <!-- RIGHT THUMB GRID -->
                     <div class="col-lg-7">
                         <div class="thumb-grid">
-                            <div class="thumb-item" data-index="0" data-category="heritage">
-                                <img src="assets/images/banner-1.jpg">
-                            </div>
-                            <div class="thumb-item" data-index="1" data-category="mountain">
-                                <img src="assets/images/banner-2 (2).jpg">
-                            </div>
-                            <div class="thumb-item" data-index="2" data-category="beach">
-                                <img src="assets/images/banner-3 (2).jpg">
-                            </div>
-                            <div class="thumb-item" data-index="3" data-category="spiritual">
-                                <img src="assets/images/desti.jpg">
-                            </div>
-                            <div class="thumb-item" data-index="0" data-category="heritage">
-                                <img src="assets/images/banner-1.jpg">
-                            </div>
-                            <div class="thumb-item" data-index="1" data-category="mountain">
-                                <img src="assets/images/banner-2 (2).jpg">
-                            </div>
-                            <div class="thumb-item" data-index="2" data-category="beach">
-                                <img src="assets/images/banner-3 (2).jpg">
-                            </div>
-                            <div class="thumb-item" data-index="3" data-category="spiritual">
-                                <img src="assets/images/desti.jpg">
-                            </div>
-                            <div class="thumb-item" data-index="3" data-category="spiritual">
-                                <img src="assets/images/desti.jpg">
-                            </div>
+                            @foreach ($gallary as $g)
+                                <div class="thumb-item" data-index="{{ $g->gallery_category_id }}"
+                                    data-category="{{ $g->category->name }}">
+                                    <img src="{{ url('uploads/' . $g->image) }}" alt="{{ $g->alt }}">
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -479,56 +411,54 @@
 
                 <div class="row">
 
-                {{-- sadf --}}
-                @foreach ($allblog as $blog)
-
-
-                    <div class="col-lg-3 col-md-6">
-                        <article>
-                            <a href="{{ 'blog-detail/' . $blog->slug }}">
-                                <div class="featured-card">
-                                    <div class="featured-img">
-                                        <img src="{{ url('uploads/' . $blog->image) }}" alt="{{ $blog->alt }}">
-                                        <div class="top-btn-icon">
-                                            <div class="top-btn"><small>{{$blog->category->name}}</small></div>
-                                            <div class="top-icon">
-                                                <img src="{{asset('assets/images/heart.png')}}" alt="heart icon">
+                    {{-- sadf --}}
+                    @foreach ($allblog as $blog)
+                        <div class="col-lg-3 col-md-6">
+                            <article>
+                                <a href="{{ 'blog-detail/' . $blog->slug }}">
+                                    <div class="featured-card">
+                                        <div class="featured-img">
+                                            <img src="{{ url('uploads/' . $blog->image) }}" alt="{{ $blog->alt }}">
+                                            <div class="top-btn-icon">
+                                                <div class="top-btn"><small>{{ $blog->category->name }}</small></div>
+                                                <div class="top-icon">
+                                                    <img src="{{ asset('assets/images/heart.png') }}" alt="heart icon">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="featured-content">
-                                        <span><i class="fa-regular fa-calendar-days"></i> {{ $blog->created_at->format('d F, Y') }}</span>
-                                        {{-- &nbsp;
+                                        <div class="featured-content">
+                                            <span><i class="fa-regular fa-calendar-days"></i>
+                                                {{ $blog->created_at->format('d F, Y') }}</span>
+                                            {{-- &nbsp;
                                         <span><i class="fa-solid fa-clock"></i> 6 mins</span>
                                         &nbsp;
                                         <span><i class="fa-regular fa-comment-dots"></i>38 comments</span> --}}
 
 
-                                        <h3>{{$blog->title}}</h3>
+                                            <h3>{{ $blog->title }}</h3>
 
 
 
-                                        <ul class="story-p">
-                                            {{-- <li>
+                                            <ul class="story-p">
+                                                {{-- <li>
                                                 <span><img src="assets/images/pro.png" alt=""></span>
                                                 <span>Jimmy Dave</span>
                                             </li> --}}
-                                            <li><span class="reading">keep Reading</span></li>
-                                        </ul>
+                                                <li><span class="reading">keep Reading</span></li>
+                                            </ul>
 
 
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </article>
-                    </div>
-
-                           @endforeach
-                {{-- sadf --}}
+                                </a>
+                            </article>
+                        </div>
+                    @endforeach
+                    {{-- sadf --}}
 
 
-            </div>
+                </div>
         </section>
 
 

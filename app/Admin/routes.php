@@ -21,4 +21,8 @@ Route::group([
     $router->resource('blog-categories', BlogCategoryController::class);
     $router->resource('blogs', BlogController::class);
 
+
+    $router->resource('gallery-categories', GalleryCategoryController::class);
+    $router->resource('galleries', GalleryController::class);
+
 });
