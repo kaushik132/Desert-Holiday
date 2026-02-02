@@ -25,4 +25,7 @@ Route::group([
     $router->resource('gallery-categories', GalleryCategoryController::class);
     $router->resource('galleries', GalleryController::class);
 
+
+    $router->resource('contacts', ContactController::class);
+
 });

@@ -34,10 +34,10 @@ class DestinationController extends AdminController
 
         $grid->column('title', __('Title'));
 
-       $grid->column('is_active', __('Status'))->switch([
-    'on'  => ['value' => 1, 'text' => 'Active'],
-    'off' => ['value' => 0, 'text' => 'Inactive'],
-]);
+        $grid->column('is_active', __('Status'))->switch([
+            'on'  => ['value' => 1, 'text' => 'Active'],
+            'off' => ['value' => 0, 'text' => 'Inactive'],
+        ]);
 
 
         return $grid;

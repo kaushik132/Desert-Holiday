@@ -29,7 +29,7 @@ class GalleryController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('category.name', __('Gallery category id'));
-        $grid->column('image', __('Image'));
+        $grid->column('image', __('Image'))->image('/uploads/', 100, 100);
 
         $grid->column('name', __('Name'));
           $grid->column('is_active', __('Status'))->switch([

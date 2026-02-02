@@ -11,6 +11,8 @@ use App\Models\BlogCategory;
 use App\Models\Duration;
 use App\Models\GalleryCategory;
 use App\Models\Gallery;
+use App\Models\Contact;
+
 
 class HomeController extends Controller
 {
@@ -36,6 +38,52 @@ class HomeController extends Controller
     {
         $destinationCategories = Destination::latest()->get();
         return view('contact', compact('destinationCategories'));
+    }
+
+    public function contactForm(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|ends_with:gmail.com',
+            'phone' => 'required|string|max:255',
+            'travel_date' => 'required|date',
+            'group_size' => 'required|string',
+            'interested_destination' => 'required|string|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ],[
+            'name.required' => 'Please enter your Full Name.',
+            'name.string' => 'Please enter a valid name.',
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.ends_with' => 'Email must be a Gmail address (ending with @gmail.com).',
+            'phone.required' => 'Please enter your phone number.',
+            'travel_date.required' => 'Please select your travel date.',
+            'group_size.required' => 'Please select your group size.',
+            'interested_destination.required' => 'Please enter your interested destination.',
+            'subject.required' => 'Please enter the subject.',
+            'subject.max' => 'Subject should not exceed 255 characters.',
+            'message.max' => 'Message should not exceed 255 characters.',
+            'message.string' => 'Please enter a valid message.',
+            'message.required' => 'Please enter your message.',
+        ]);
+
+        // Create a new contact record
+        Contact::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'travel_date' => $request->input('travel_date'),
+            'group_size' => $request->input('group_size'),
+            'interested_destination' => $request->input('interested_destination'),
+            'subject' => $request->input('subject'),
+            'message' => $request->input('message'),
+        ]);
+
+
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 
     public function destination($slug = null)

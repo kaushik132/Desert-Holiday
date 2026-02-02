@@ -23,3 +23,6 @@ Route::get('blog/{slug?}', [HomeController::class, 'blog']);
 Route::get('blog-detail/{slug?}', [HomeController::class, 'blogDetail']);
 
 
+Route::post('/contact-form', [HomeController::class, 'contactForm'])->name('contact.form');
+
+
