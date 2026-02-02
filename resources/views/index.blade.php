@@ -99,7 +99,7 @@
                     @foreach ($destination as $destination)
                         <div class="item">
                             <article>
-                                <a href="{{ 'destination-detail' }}">
+                                <a href="{{ url('destination-detail') }}">
                                     <div class="featured-card">
                                         <div class="featured-img">
                                             <img src="{{ url('uploads/' . $destination->thumb_image) }}"
@@ -210,19 +210,19 @@
                         <div class="image-wrap">
 
                             <div class="circle-img large cir-same">
-                                <img src="assets/images/destina.webp" alt="">
+                                <img src="{{asset('assets/images/destina.webp')}}" alt="destina logo">
                             </div>
 
                             <div class="circle-img medium top cir-same">
-                                <img src="assets/images/destina.webp" alt="">
+                                <img src="{{asset('assets/images/destina.webp')}}" alt="destina logo">
                             </div>
 
                             <div class="circle-img small">
-                                <img src="assets/images/destina.webp" alt="">
+                                <img src="{{asset('assets/images/destina.webp')}}" alt="destina logo">
                             </div>
 
                             <div class="circle-img mini-small">
-                                <img src="assets/images/destina.webp" alt="">
+                                <img src="{{asset('assets/images/destina.webp')}}" alt="destina logo">
                             </div>
 
                             <!-- dotted design -->
@@ -296,34 +296,34 @@
 
                 <div class="owl-carousel testimonial-slider">
 
-                    <div class="item">
-                        <div class="testimonial-card">
-                            <h6>The best booking system</h6>
-                            <p class="testi-p">I've been using the hotel booking system for several years
-                                now, and it's become my go-to platform for planning my
-                                trips. The interface is user-friendly, and I appreciate the
-                                detailed information and real-time availability of hotels.</p>
+                    @foreach ($testimonials as $testimonials)
+                        <div class="item">
+                            <div class="testimonial-card">
+                                <h6>{{ $testimonials->title }}</h6>
+                                <p class="testi-p">{{ $testimonials->short_description }}</p>
 
-                            <ul class="">
-                                <li class="profile-content">
-                                    <img src="assets/images/pro.png" alt="">
-                                    <div class="">
-                                        <span>Sara Mohamed</span>
-                                        <p>Jakatar</p>
+                                <ul class="">
+                                    <li class="profile-content">
+                                        <img src="{{ url('uploads/' . $testimonials->image) }}"
+                                            alt="{{ $testimonials->alt }}">
+                                        <div class="">
+                                            <span>{{ $testimonials->user_name }}</span>
+                                            <p>{{ $testimonials->user_role }}</p>
 
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="assets/images/star.svg.png" alt="">
-                                    <img src="assets/images/star.svg.png" alt="">
-                                    <img src="assets/images/star.svg.png" alt="">
-                                    <img src="assets/images/star.svg.png" alt="">
-                                    <img src="assets/images/star.svg.png" alt="">
-                                </li>
-                            </ul>
+                                        </div>
+                                    </li>
+                                    @php $stars = round($testimonials->star); @endphp
+
+                                    <li>
+                                        @for ($i = 1; $i <= $stars && $i <= 5; $i++)
+                                            <img src="assets/images/star.svg.png" alt="star">
+                                        @endfor
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-
+                    @endforeach
 
 
                 </div>
@@ -406,7 +406,7 @@
                         <p class="section-subtitle mb-4 text-start">Real stories and genuine experiences shared by
                             travelers who explored with us.</p>
                     </li>
-                    <li><a href="#!">View All</a></li>
+                    <li><a href="{{url('blog')}}">View All</a></li>
                 </ul>
 
                 <div class="row">
@@ -415,7 +415,7 @@
                     @foreach ($allblog as $blog)
                         <div class="col-lg-3 col-md-6">
                             <article>
-                                <a href="{{ 'blog-detail/' . $blog->slug }}">
+                                <a href="{{ url('blog-detail/' . $blog->slug) }}">
                                     <div class="featured-card">
                                         <div class="featured-img">
                                             <img src="{{ url('uploads/' . $blog->image) }}" alt="{{ $blog->alt }}">
@@ -430,10 +430,7 @@
                                         <div class="featured-content">
                                             <span><i class="fa-regular fa-calendar-days"></i>
                                                 {{ $blog->created_at->format('d F, Y') }}</span>
-                                            {{-- &nbsp;
-                                        <span><i class="fa-solid fa-clock"></i> 6 mins</span>
-                                        &nbsp;
-                                        <span><i class="fa-regular fa-comment-dots"></i>38 comments</span> --}}
+
 
 
                                             <h3>{{ $blog->title }}</h3>
@@ -441,10 +438,7 @@
 
 
                                             <ul class="story-p">
-                                                {{-- <li>
-                                                <span><img src="assets/images/pro.png" alt=""></span>
-                                                <span>Jimmy Dave</span>
-                                            </li> --}}
+
                                                 <li><span class="reading">keep Reading</span></li>
                                             </ul>
 

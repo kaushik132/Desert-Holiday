@@ -32,4 +32,6 @@ Route::group([
 
     $router->resource('seos', SeoController::class);
 
+    $router->resource('testimonials', TestimonialsController::class);
+
 });

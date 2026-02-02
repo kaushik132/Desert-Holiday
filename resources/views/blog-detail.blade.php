@@ -55,7 +55,7 @@
 
 
                                     <div class="recent-post-content">
-                                        <a href="{{ 'blog-detail/' . $rendom->slug }}">
+                                        <a href="{{ url('blog-detail/' . $rendom->slug) }}">
 
                                         <span class="tag gadget">{{ $rendom->category->name }}</span>
                                         <h6>
@@ -69,7 +69,7 @@
                                     </div>
 
                                     <div class="recent-post-img">
-                                        <a href="{{ 'blog-detail/' . $rendom->slug }}">
+                                        <a href="{{url('blog-detail/' . $rendom->slug) }}">
                                         <img src="{{ url('uploads/' . $rendom->image) }}" alt="{{ $rendom->alt }}">
                                         </a>
                                     </div>

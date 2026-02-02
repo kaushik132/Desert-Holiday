@@ -25,17 +25,16 @@
                 <!-- Owl Carousel Wrapper -->
                 <div class="owl-carousel category-carousel">
 
-@foreach ($alldestinations as $alldestination)
+                    @foreach ($alldestinations as $alldestination)
+                        <a href="{{ url('destination/' . $alldestination->slug) }}" class="item">
+                            <div class="category-item text-center">
+                                <img src="{{ url('uploads/' . $alldestination->image) }}" class="rounded-circle"
+                                    alt="Leh-Ladakh">
+                                <h6 class="category-title mt-3">{{ $alldestination->name }}</h6>
+                                <p class="category-subtitle">{{ $alldestination->short_description }}</p>
+                            </div>
 
-
-                    <a href="{{ 'destination/' . $alldestination->slug }}" class="item">
-                        <div class="category-item text-center">
-                            <img src="{{ url('uploads/' . $alldestination->image) }}" class="rounded-circle" alt="Leh-Ladakh">
-                            <h6 class="category-title mt-3">{{$alldestination->name}}</h6>
-                            <p class="category-subtitle">{{$alldestination->short_description}}</p>
-                        </div>
-
-                    </a>
+                        </a>
                     @endforeach
 
 
@@ -126,7 +125,7 @@
                         <div class="col-lg-3 col-md-6 tour-card" data-category="{{ $destination->category_id }}"
                             data-duration="{{ $destination->duration_id }}">
                             <article>
-                                <a href="{{ 'destination-detail/' . $destination->slug }}">
+                                <a href="{{ url('destination-detail/' . $destination->slug) }}">
                                     <div class="featured-card">
                                         <div class="featured-img">
                                             <img src="{{ url('uploads/' . $destination->thumb_image) }}"
@@ -196,113 +195,115 @@
         </div>
     </div>
 
-   <script>
-let selectedCategory = '';
-let selectedDuration = '';
+    <script>
+        let selectedCategory = '';
+        let selectedDuration = '';
 
-/* Open/close dropdown */
-document.querySelectorAll('.custom-select').forEach(select => {
-    select.addEventListener('click', function () {
-        this.classList.toggle('open');
-    });
-});
+        /* Open/close dropdown */
+        document.querySelectorAll('.custom-select').forEach(select => {
+            select.addEventListener('click', function() {
+                this.classList.toggle('open');
+            });
+        });
 
-/* Option click */
-document.querySelectorAll('.option').forEach(option => {
-    option.addEventListener('click', function (e) {
-        e.stopPropagation();
+        /* Option click */
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
 
-        const select = this.closest('.custom-select');
-        const text = this.innerText;
-        const id = this.dataset.id;
+                const select = this.closest('.custom-select');
+                const text = this.innerText;
+                const id = this.dataset.id;
 
-        select.querySelector('.selected-text').innerText = text;
+                select.querySelector('.selected-text').innerText = text;
 
-        if (select.previousElementSibling?.innerText === 'Category') {
-            selectedCategory = id;
-        } else {
-            selectedDuration = id;
+                if (select.previousElementSibling?.innerText === 'Category') {
+                    selectedCategory = id;
+                } else {
+                    selectedDuration = id;
+                }
+
+                filterTours();
+                renderTags();
+            });
+        });
+
+        /* Filter logic */
+        function filterTours() {
+            let count = 0;
+
+            document.querySelectorAll('.tour-card').forEach(card => {
+                const cat = card.dataset.category;
+                const dur = card.dataset.duration;
+
+                let show = true;
+                if (selectedCategory && cat !== selectedCategory) show = false;
+                if (selectedDuration && dur !== selectedDuration) show = false;
+
+                card.style.display = show ? 'block' : 'none';
+                if (show) count++;
+            });
+
+            document.querySelector('.fw-medium').innerText =
+                `Showing ${count} tour packages`;
         }
 
-        filterTours();
-        renderTags();
-    });
-});
+        /* Render filter tags dynamically */
+        function renderTags() {
+            const tagBox = document.querySelector('.filter-tags');
+            tagBox.innerHTML = '';
 
-/* Filter logic */
-function filterTours() {
-    let count = 0;
-
-    document.querySelectorAll('.tour-card').forEach(card => {
-        const cat = card.dataset.category;
-        const dur = card.dataset.duration;
-
-        let show = true;
-        if (selectedCategory && cat !== selectedCategory) show = false;
-        if (selectedDuration && dur !== selectedDuration) show = false;
-
-        card.style.display = show ? 'block' : 'none';
-        if (show) count++;
-    });
-
-    document.querySelector('.fw-medium').innerText =
-        `Showing ${count} tour packages`;
-}
-
-/* Render filter tags dynamically */
-function renderTags() {
-    const tagBox = document.querySelector('.filter-tags');
-    tagBox.innerHTML = '';
-
-    if (selectedCategory) {
-        const catText = document.querySelector('.custom-select[data-type="category"] .selected-text').innerText;
-        const tag = document.createElement('span');
-        tag.className = 'filter-tag';
-        tag.innerHTML = `${catText} <span class="remove-tag" data-type="category">×</span>`;
-        tagBox.appendChild(tag);
-    }
-
-    if (selectedDuration) {
-        const durText = document.querySelector('.custom-select[data-type="duration"] .selected-text').innerText;
-        const tag = document.createElement('span');
-        tag.className = 'filter-tag';
-        tag.innerHTML = `${durText} <span class="remove-tag" data-type="duration">×</span>`;
-        tagBox.appendChild(tag);
-    }
-
-    // Add click event for removing a tag
-    document.querySelectorAll('.remove-tag').forEach(el => {
-        el.addEventListener('click', function () {
-            const type = this.dataset.type;
-            if (type === 'category') selectedCategory = '';
-            if (type === 'duration') selectedDuration = '';
-
-            // Reset dropdown text
-            if (type === 'category') {
-                document.querySelector('.custom-select[data-type="category"] .selected-text').innerText = 'All';
-            }
-            if (type === 'duration') {
-                document.querySelector('.custom-select[data-type="duration"] .selected-text').innerText = 'All';
+            if (selectedCategory) {
+                const catText = document.querySelector('.custom-select[data-type="category"] .selected-text').innerText;
+                const tag = document.createElement('span');
+                tag.className = 'filter-tag';
+                tag.innerHTML = `${catText} <span class="remove-tag" data-type="category">×</span>`;
+                tagBox.appendChild(tag);
             }
 
-            filterTours();
-            renderTags();
+            if (selectedDuration) {
+                const durText = document.querySelector('.custom-select[data-type="duration"] .selected-text').innerText;
+                const tag = document.createElement('span');
+                tag.className = 'filter-tag';
+                tag.innerHTML = `${durText} <span class="remove-tag" data-type="duration">×</span>`;
+                tagBox.appendChild(tag);
+            }
+
+            // Add click event for removing a tag
+            document.querySelectorAll('.remove-tag').forEach(el => {
+                el.addEventListener('click', function() {
+                    const type = this.dataset.type;
+                    if (type === 'category') selectedCategory = '';
+                    if (type === 'duration') selectedDuration = '';
+
+                    // Reset dropdown text
+                    if (type === 'category') {
+                        document.querySelector('.custom-select[data-type="category"] .selected-text')
+                            .innerText = 'All';
+                    }
+                    if (type === 'duration') {
+                        document.querySelector('.custom-select[data-type="duration"] .selected-text')
+                            .innerText = 'All';
+                    }
+
+                    filterTours();
+                    renderTags();
+                });
+            });
+        }
+
+        /* Clear all button */
+        document.querySelector('.btn-clear').addEventListener('click', () => {
+            selectedCategory = '';
+            selectedDuration = '';
+
+            document.querySelectorAll('.selected-text').forEach(el => el.innerText = 'All');
+            document.querySelectorAll('.tour-card').forEach(c => c.style.display = 'block');
+
+            document.querySelector('.fw-medium').innerText =
+                `Showing ${document.querySelectorAll('.tour-card').length} tour packages`;
+
+            document.querySelector('.filter-tags').innerHTML = '';
         });
-    });
-}
-
-/* Clear all button */
-document.querySelector('.btn-clear').addEventListener('click', () => {
-    selectedCategory = '';
-    selectedDuration = '';
-
-    document.querySelectorAll('.selected-text').forEach(el => el.innerText = 'All');
-    document.querySelectorAll('.tour-card').forEach(c => c.style.display = 'block');
-
-    document.querySelector('.fw-medium').innerText =
-        `Showing ${document.querySelectorAll('.tour-card').length} tour packages`;
-
-    document.querySelector('.filter-tags').innerHTML = '';
-});
-</script>
+    </script>
 @endsection

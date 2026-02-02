@@ -14,6 +14,8 @@ use App\Models\Gallery;
 use App\Models\Contact;
 use App\Models\Enquiry;
 use App\Models\Seo;
+use App\Models\Testimonials;
+
 
 
 class HomeController extends Controller
@@ -35,8 +37,10 @@ class HomeController extends Controller
         $allblog = Blog::latest()->with('category')->limit(10)->get();
         $galleryCagerory = GalleryCategory::latest()->limit(8)->get();
         $gallary = Gallery::latest()->with('category')->limit(8)->get();
+        $testimonials = Testimonials::latest()->get();
 
-        return view('index', compact('destinationCategories', 'destination', 'destinationCategoriess', 'category', 'allblog', 'galleryCagerory', 'gallary', 'seo_data', 'canocial'));
+
+        return view('index', compact('destinationCategories', 'destination', 'destinationCategoriess', 'category', 'allblog', 'galleryCagerory', 'gallary', 'seo_data', 'canocial','testimonials'));
     }
 
     public function about()
@@ -112,14 +116,14 @@ class HomeController extends Controller
 
     public function destination($slug = null)
     {
-        $homepage = Seo::select('seo_title_tour', 'seo_des_tour', 'seo_key_tour')->first();
+        $homepage = Seo::select('seo_destination_title', 'seo_destination_des', 'seo_destination_key')->first();
         if ($slug != null) {
             $destinationCategory = DestinationCategory::where('slug', $slug)->first();
             $destinationList = Destination::latest()->with('category')->where('category_id', $destinationCategory->id)->paginate(4);
-                $seo_data['seo_title'] =$destinationList->seo_title;
-                $seo_data['seo_description'] =$destinationList->seo_description;
-               $seo_data['keywords'] =$destinationList->seo_keyword;
-                  $seo_data['seo_image'] = $destinationList->thumb_image;
+                $seo_data['seo_title'] =$destinationCategory->seo_title;
+                $seo_data['seo_description'] =$destinationCategory->seo_des;
+               $seo_data['keywords'] =$destinationCategory->seo_key;
+                  $seo_data['seo_image'] = $destinationCategory->image;
             $canocial = 'https://www.tajindiatrails.com/destination/' . $slug;
         } else {
             $destinationList = Destination::latest()->with('category')->paginate(4);
@@ -214,11 +218,11 @@ class HomeController extends Controller
         $homepage = Seo::first();
         if ($slug != null) {
             $blogcategory = BlogCategory::where('slug', $slug)->first();
-            $blogList = Blog::with('category')->where('category_id, $blogcategory->id')->paginate(4);
-            $seo_data['seo_title'] = $blogList->seo_title;
-            $seo_data['seo_description'] = $blogList->seo_des;
-            $seo_data['keywords'] = $blogList->seo_key;
-            $seo_data['seo_image'] = $blogList->image;
+            $blogList = Blog::with('category')->where('blog_category_id',$blogcategory->id)->paginate(4);
+            $seo_data['seo_title'] = $blogcategory->seo_title;
+            $seo_data['seo_description'] = $blogcategory->seo_des;
+            $seo_data['keywords'] = $blogcategory->seo_key;
+            $seo_data['seo_image'] = $blogcategory->image;
             $canocial = 'https://www.tajindiatrails.com/blog/' . $slug;
         } else {
             $blogList = Blog::with('category')->paginate(4);

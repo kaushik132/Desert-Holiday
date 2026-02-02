@@ -35,7 +35,7 @@
 
                     <!-- LEFT BIG BLOG -->
                     <div class="col-lg-6">
-                        <a href="{{ 'blog-detail/'. $newblog->slug }}">
+                        <a href="{{ url('blog-detail/'. $newblog->slug) }}">
                             <div class="blog-card blog-large p-0">
                                 <img src="{{ url('uploads/' . $newblog->image) }}" alt="{{ $newblog->alt }}">
                                 <div class="blog-overlay">
@@ -58,7 +58,7 @@
                             <!-- BLOG ITEM -->
                             @foreach ($blogrendom as $rendom)
                                 <div class="col-lg-12 col-md-6">
-                                    <a href="{{ 'blog-detail/' . $rendom->slug }}">
+                                    <a href="{{url('blog-detail/' . $rendom->slug) }}">
                                         <div class="blog-card blog-small d-flex">
                                             <img src="{{ url('uploads/' . $rendom->image) }}" alt="{{ $rendom->alt }}">
                                             <div class="blog-content">
@@ -80,30 +80,7 @@
                                 </div>
 
                             @endforeach
-                            {{-- <div class="col-lg-12 col-md-6">
-                                <a href="{{ 'blog-detail' }}">
-                                    <div class="blog-card blog-small d-flex">
-                                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
-                                            alt="">
-                                        <div class="blog-content">
-                                            <span class="blog-tag">TECHNOLOGY</span>
-                                            <h5>Iphone Devices Are Going To Incredible Now A Days</h5>
-                                            <div class="blog-meta">
-                                                <span>By Admin</span> • <span>27 August, 2024</span> • <span>20 Mins</span>
-                                            </div>
-                                            <p>
-                                                Browned butter and brown sugar are caramelly goodness,
-                                                crispy edges and soft centers...
-                                            </p>
-                                            <a href="{{ 'blog-detail' }}" class="read-more">
-                                                Read More <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> --}}
-
-                            <!-- BLOG ITEM -->
+                           
 
 
                         </div>
@@ -117,7 +94,7 @@
                 <div class="owl-carousel blog-slider">
                     @foreach ($blogList as $blog)
                         <div class="item">
-                            <a href="{{ 'blog-detail/' . $blog->slug }}">
+                            <a href="{{ url('blog-detail/' . $blog->slug) }}">
                                 <div class="blog-card blog-small d-flex">
                                     <img src="{{ url('uploads/' . $blog->image) }}" alt="{{ $blog->alt }}">
                                     <div class="blog-content">

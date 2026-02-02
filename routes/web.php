@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::get('blog-detail/{slug?}', [HomeController::class, 'blogDetail']);
 Route::post('/contact-form', [HomeController::class, 'contactForm'])->name('contact.form');
 Route::post('/tour-enquiry', [HomeController::class, 'tourEnquiry'])->name('tour.enquiry');
 
-
+//sitemap.xml
+Route::get('sitemap.xml',[SitemapController::class, 'index']);
