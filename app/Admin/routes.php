@@ -27,5 +27,9 @@ Route::group([
 
 
     $router->resource('contacts', ContactController::class);
+    $router->resource('enquiries', EnquiryController::class);
+
+
+    $router->resource('seos', SeoController::class);
 
 });

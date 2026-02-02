@@ -31,7 +31,20 @@
                         <p class="sub-text">
                             Share your travel plans or questions, and our team will respond within 24 hours.
                         </p>
+                              @if (Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @elseif (Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ Session::get('error') }}
+                                    </div>
+
+                                @endif
+
+
                         <div class="contact-form-card">
+
                             <form action="{{ route('contact.form') }}" method="POST">
                                 @csrf
                                 <div class="row g-3">

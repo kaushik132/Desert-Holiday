@@ -4,7 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India Desert Holiday</title>
+   @if (isset($seo_data['seo_title']))
+        <title>{{ $seo_data['seo_title'] }}</title>
+    @endif
+
+    @if (isset($seo_data['seo_description']))
+        <meta name="description" content="{{ $seo_data['seo_description'] }}" />
+    @endif
+
+    @if (isset($seo_data['keywords']))
+        <meta name="keywords" content="{{ $seo_data['keywords'] }}" />
+    @endif
+
+
+    <meta property="og:title" content="{{ $seo_data['seo_title'] }}">
+    <meta property="og:site_name" content="Codepin">
+
+    @if (isset($canocial))
+        <meta property="og:url" content="{{ $canocial }}">
+    @endif
+
+    <meta property="og:description" content="{{ $seo_data['seo_description'] }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ url('uploads/' . $seo_data['seo_image']) }}">
 
     <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.min.css')}}" type="text/css">

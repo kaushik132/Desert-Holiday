@@ -98,37 +98,91 @@
                             <div class="price-box">
                                 {{-- <h3>₹2,499 <span>₹2,999</span></h3>
                                 <p>Per Person</p> --}}
+
+                                @if (Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @elseif (Session::has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ Session::get('error') }}
+                                    </div>  
+
+                                @endif
                             </div>
 
-                            <form class="booking-form">
+                            <form action="{{ route('tour.enquiry') }}" method="post" class="booking-form">
+                                @csrf
+
+                                <input type="hidden" name="package_id" value="{{ $destinationsData->id }}">
                                 <label>People</label>
-                                <input type="text" value="1 Adult">
+                                <input type="text" name="people" value="{{old('people')}}" placeholder="Enter number of people">
+                                <span>
+                                    @error('people')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </span>
 
                                 <label>Full Name</label>
-                                <input type="text" placeholder="Enter your name">
+                                <input type="text" name="name" oninput="this.value = this.value.replace(/[^A-Za-z+. ]/g, '').replace(/(\..*?)\..*/g, '$1');" value="{{old('name')}}"  placeholder="Enter your name">
+                                <span>
+                                    @error('name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </span>
 
                                 <label>Email Address</label>
-                                <input type="email" placeholder="Enter your email">
+                                <input type="email" name="email" value="{{old('email')}}" placeholder="Enter your email">
+                                <span>
+                                    @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </span>
 
                                 <label>Phone Number</label>
                                 <div class="phone-field">
                                     <span>+91</span>
-                                    <input type="text" placeholder="Enter your number">
+                                    <input type="text" name="phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+.]/g, '').replace(/(\..*?)\..*/g, '$1');" value="{{old('phone')}}" placeholder="Enter your number">
+                                    <span>
+                                        @error('phone')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </span>
                                 </div>
 
                                 <label>Select Date</label>
-                                <input type="date">
+                                <input type="date" name="date_of_travel">
+                                <span>
+                                    @error('date_of_travel')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </span>
 
                                 <label>Country</label>
-                                <input type="text" value="India">
+                                <input type="text" name="country" value="{{old('country')}}">
+                                <span>
+                                    @error('country')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </span>
 
                                 <label>City</label>
-                                <input type="text">
+                                <input type="text" name="city" value="{{old('city')}}">
+                                <span>
+                                    @error('city')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </span>
 
                                 <label>Additional message</label>
-                                <textarea placeholder="Message here..."></textarea>
+                                <textarea name="message" placeholder="Message here..."></textarea>
+                                <span>
+                                    @error('message')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </span>
 
-                                <button type="submit">Book Now</button>
+                                <button type="submit">Enquiry Now</button>
                             </form>
 
                         </div>

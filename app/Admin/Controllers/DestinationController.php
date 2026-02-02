@@ -123,6 +123,11 @@ class DestinationController extends AdminController
             $form->textarea('inclusions', __('Inclusions'));
             $form->textarea('exclusions', __('Exclusions'));
         });
+        $form->tab('SEO', function ($form) {
+            $form->text('seo_title', __('Seo Title'));
+            $form->textarea('seo_description', __('Seo Description'));
+            $form->textarea('seo_keyword', __('Seo Keyword'));
+        });
         $form->tab('Status', function ($form) {
             $form->switch('is_active', __('Is active'))->default(1);
         });
