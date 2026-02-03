@@ -24,19 +24,20 @@
                     <div class="links-bx">
                         <h5 class="footer-title">Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Solutions</a></li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{url('/about-us')}}">About Us</a></li>
+
+                            <li><a href="{{url('/blog')}}">Blog</a></li>
                         </ul>
                     </div>
                     <div class="support-bx">
                         <h5 class="footer-title">Destinations</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#">Rajasthan</a></li>
-                            <li><a href="#">Kashmir</a></li>
-                            <li><a href="#">Uttarakhand</a></li>
-                            <li><a href="#">Goa</a></li>
+                            @foreach ($headerdestination as $headerdestination)
+
+                            <li><a href="{{url('destination/' . $headerdestination->slug)}}">{{$headerdestination->name}}</a></li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -46,7 +47,6 @@
 
                     <ul class="list-unstyled">
                         <h5 class="footer-title">Contact Us</h5>
-                        <li><a href="#">Help Center</a></li>
                         <li><a href="#">FAQs</a></li>
                         <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Privacy Policy</a></li>
@@ -55,17 +55,17 @@
                     <ul class="list-unstyled">
                         <p>
                             <a href="#" class="contact-link">
-                                123 Tourism Street, New Delhi, India 110001
+                               {{$info->address}}
                             </a>
                         </p>
                         <p>
-                            <a href="tel:+919876543210" class="contact-link">
-                                +91 9876543210
+                            <a href="tel:{{$info->phone}}" class="contact-link">
+                                {{$info->phone}}
                             </a>
                         </p>
                         <p>
-                            <a href="mailto:info@indiatours.com" class="contact-link">
-                                info@indiatours.com
+                            <a href="mailto:{{$info->email}}" class="contact-link">
+                                {{$info->email}}
                             </a>
                         </p>
                     </ul>

@@ -13,13 +13,22 @@ use App\Models\GalleryCategory;
 use App\Models\Gallery;
 use App\Models\Contact;
 use App\Models\Enquiry;
+use App\Models\Info;
 use App\Models\Seo;
 use App\Models\Testimonials;
-
-
+use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
+     public function __construct()
+     {
+        $headerdestination = DestinationCategory::latest()->limit(5)->get();
+        $info =   Info::first();
+        View::share('headerdestination', $headerdestination);
+        View::share('info', $info);
+     }
+
+
     public function index()
     {
         $homepage = Seo::latest()->first();

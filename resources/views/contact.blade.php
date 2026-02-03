@@ -157,30 +157,29 @@
                             <div class="info-grid">
                                 <div>
                                     <h6>Call Center</h6>
-                                    <p>(208) 555-0128</p>
+                                    <p>{{$info->phone}}</p>
                                 </div>
                                 <div>
                                     <h6>Our Location</h6>
-                                    <p>1901 Thornridge Cir. Shiloh, Hawaii</p>
+                                    <p>{{$info->address}}</p>
                                 </div>
                                 <div>
                                     <h6>Social Network</h6>
                                     <div class="contact-social-icons">
-                                        <i class="fa-brands fa-facebook-f"></i>
-                                        <i class="fa-brands fa-instagram"></i>
-                                        <i class="fa-brands fa-twitter"></i>
-                                        <i class="fa-brands fa-linkedin-in"></i>
+                                        <a href="{{$info->facebook_link}}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                        <a href="{{$info->instagram_link}}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                        <a href="{{$info->twitter_link}}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                                     </div>
                                 </div>
                                 <div>
                                     <h6>Email</h6>
-                                    <p>nathan.roberts@example.com</p>
+                                    <p>{{$info->email}}</p>
                                 </div>
                             </div>
 
                             <!-- MAP -->
                             <div class="map-box mt-3">
-                                <iframe src="https://www.google.com/maps?q=Toronto&output=embed" loading="lazy">
+                                <iframe src="{{$info->map}}" loading="lazy">
                                 </iframe>
                             </div>
 

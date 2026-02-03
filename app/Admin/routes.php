@@ -34,4 +34,8 @@ Route::group([
 
     $router->resource('testimonials', TestimonialsController::class);
 
+
+
+    $router->resource('infos', InfoController::class);
+
 });
